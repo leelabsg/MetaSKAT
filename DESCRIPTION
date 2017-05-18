@@ -1,0 +1,12 @@
+Package: MetaSKAT
+Type: Package 
+Title: Meta Analysis for SNP-Set (Sequence) Kernel Association Test
+Version: 0.61
+Date: 2015-09-09
+Author: Seunggeun (Shawn) Lee
+Maintainer: Seunggeun (Shawn) Lee <leeshawn@umich.edu>  
+Description: Functions for Meta-analysis Burden test, SKAT and SKAT-O. These methods use summary-level score statistics to carry out gene-based meta-analysis for rare variants.
+License: GPL(>=2)
+SystemRequirements:	Little Endian
+Depends: R (>= 2.13.0)
+Imports: SKAT
