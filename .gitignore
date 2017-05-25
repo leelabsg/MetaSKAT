@@ -8,3 +8,7 @@ src/*.dll
 .DS_Store
 *~
 .Rapp.history
+test
+temp
+R_backup
+Xcode

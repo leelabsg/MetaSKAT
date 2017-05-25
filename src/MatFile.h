@@ -15,7 +15,7 @@
 #include <cstring>
 #include <vector>
 #define MAGIC_NUM_MAT	0x11
-#define MAX_SIZE_MAT	25000000 /* 5000 x 5000 */
+#define MAX_SIZE_MAT	200010000 /* 20000 x (20000 +1)/2 */
 
 class MatFile
 {

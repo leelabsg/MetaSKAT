@@ -1,11 +1,4 @@
 MetaSSD.env <- new.env()
-Print_Error_CODE<-function(err_code){
-
-	if(err_code > 0){
-		stop("Error code = ", err_code, "\n")
-	}
-
-}
 
 ##################################################################
 #
