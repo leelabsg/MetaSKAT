@@ -118,7 +118,7 @@ int	Mat_Num_Sets(){
 
 int	Mat_GetStart_Pos(double * pos, int * size){
 
-    int i, size1, re;
+    int i, size1, re=0;
     long pos1;
     int len = g_MatFile_Save.GetNum_Sets();
     for(i=0;i<len;i++){

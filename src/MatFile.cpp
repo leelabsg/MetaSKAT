@@ -37,7 +37,7 @@ int MatFile::OpenToSave(const char * FileName){
 
 	char MagicNum[2];
 	MagicNum[0] = MAGIC_NUM_MAT;
-	MagicNum[1] = NULL;
+	MagicNum[1] = 0;
 
     /* Close the opened file first*/
     Close();
@@ -60,9 +60,9 @@ int MatFile::OpenToSave(const char * FileName){
 int MatFile::OpenToRead(const char * FileName){
 
 	int re;
-	char MagicNum[2];
-	MagicNum[0] = MAGIC_NUM_MAT;
-	MagicNum[1] = NULL;
+	//char MagicNum[2];
+	//MagicNum[0] = MAGIC_NUM_MAT;
+	//MagicNum[1] = 0;
 
     /* Close the opened file first*/
     Close();
