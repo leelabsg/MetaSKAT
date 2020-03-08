@@ -442,7 +442,7 @@ Generate_Meta_Files_Work<-function(obj, File.Bed, File.Bim, File.SetID, File.MSS
 	# Check obj
 	
 	
-	if(!Check_Class(obj, "SKAT_NULL_Model_ADJ")){
+	if(Check_Class(obj, "SKAT_NULL_Model_ADJ")){
 		obj = obj$re1
 		warning("MetaSKAT doesn't support the small sample adjustment!")
 	} 

@@ -71,8 +71,7 @@ Meta_SKAT_SaveData = function(Z, obj.res, SetID, impute.method = "fixed"){
 
 	out.z<-Meta_SKAT_MAIN_Check_Z(Z, n, obj.res$id_include, SetID, impute.method=impute.method)
 	
-	#if(Check_Class(obj.res, "SKAT_NULL_Model_EMMAX")){
-	if(class(obj.res) == "SKAT_NULL_Model_EMMAX"){
+	if(Check_Class(obj.res, "SKAT_NULL_Model_EMMAX")){
 		out = Meta_SKAT_SaveData_Kinship(obj.res$res, out.z$Z.test, obj.res$P)
 	} else if(obj.res$out_type == "C"){
 		out = Meta_SKAT_SaveData_Linear(obj.res$res,out.z$Z.test
