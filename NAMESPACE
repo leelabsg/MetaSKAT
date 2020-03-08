@@ -6,9 +6,9 @@ export(Meta_Null_Model, MetaSKAT_wZ, MetaSKAT_MSSD_OneSet, Open_MSSD_File_2Read,
 , Generate_Meta_Files_FromDosage, MetaSKAT_MSSD_ALL, Meta_Null_Model_EmmaX)
 #, Open_MPermu_File_2Read, MetaSKAT_MPermu_OneSet, Meta_Null_Model_EmmaX)
 
-importFrom("stats", "dbeta")
+importFrom("stats", "dbeta", "rbinom")
 importFrom("utils", "read.delim", "read.table", "write.table")
-  
+
 # variables
 #export(META_SSD_FILE_OPEN_Read.isInit,
 #META_BED_FILE_OPEN.isOpen, META_BED_FILE_OPEN.FileName, 
