@@ -12,7 +12,7 @@ Meta_SKAT_MAIN_Check_Z<-function(Z, n, id_include, SetID, is_dosage=FALSE, imput
 	#############################################
 	# Check parameters
 
-	if (class(Z)!= "matrix") stop("Z is not a matrix")
+	if (!Check_Class(Z, "matrix")) stop("Z is not a matrix")
 	if (nrow(Z)!=n) stop("Dimensions of y and Z do not match")
  	if(is_dosage ==TRUE){
 		impute.method="fixed"
@@ -71,7 +71,7 @@ Meta_SKAT_SaveData = function(Z, obj.res, SetID, impute.method = "fixed"){
 
 	out.z<-Meta_SKAT_MAIN_Check_Z(Z, n, obj.res$id_include, SetID, impute.method=impute.method)
 	
-	if(class(obj.res)== "SKAT_NULL_Model_EMMAX"){
+	if(Check_Class(obj.res, "SKAT_NULL_Model_EMMAX")){
 		out = Meta_SKAT_SaveData_Kinship(obj.res$res, out.z$Z.test, obj.res$P)
 	} else if(obj.res$out_type == "C"){
 		out = Meta_SKAT_SaveData_Linear(obj.res$res,out.z$Z.test

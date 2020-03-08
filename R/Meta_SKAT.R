@@ -1,3 +1,16 @@
+Check_Class<-function(obj, class_type){
+  re<-TRUE
+  if(!any(class(obj) %in% class_type)){
+    re<-FALSE
+  }
+  return(re)
+}
+
+Is_TryError<-function(obj){
+  
+  re<-Check_Class(obj, "try-error")
+  return(re)
+}
 
 Beta.Weights<-function(MAF,weights.beta, Cutoff=1, Is.MAF=TRUE){
 
@@ -198,7 +211,7 @@ MetaSKAT_MSSD_ALL<-function(Cohort.Info, ...){
 	for(i in 1:n.set){
 		SetID=Cohort.Info$Set_unique[i]
 		out<-try(MetaSKAT_MSSD_OneSet(Cohort.Info,SetID, ... ), silent = TRUE)
-		if(class(out)!= "try-error"){
+		if(!Is_TryError(out)){
 			pval[i]<-MetaSKAT_MSSD_OneSet(Cohort.Info,SetID, ... )$p.value
 		}
 	}
@@ -222,7 +235,7 @@ method="davies", r.corr=0, is.separate = FALSE, Group_Idx=NULL, impute.method="f
 	if(is.matrix(Z)!= TRUE){
 		stop("ERROR: Z is not a matrix!")
 	}
-	if(class(obj)!= "META_NULL_Model" && class(obj)!= "META_NULL_Model_EmmaX"){
+	if(!Check_Class(obj, "META_NULL_Model") && !Check_Class(obj, "META_NULL_Model_EmmaX")){
 		stop("ERROR: obj class is not either META_NULL_Model or META_NULL_Model_EmmaX!")
 	}
 	
@@ -318,7 +331,7 @@ method="davies", r.corr=0, is.separate = FALSE, Group_Idx=NULL, impute.method="f
 		stop("ERROR: Z is not a matrix!")
 	}
 
-	if(class(obj)!= "META_NULL_Model" && class(obj)!= "META_NULL_Model_EmmaX"){
+	if(!Check_Class(obj, "META_NULL_Model") && !Check_Class(obj, "META_NULL_Model_EmmaX")){
 		stop("ERROR: obj class is not either META_NULL_Model or META_NULL_Model_EmmaX!")
 	}
 	
