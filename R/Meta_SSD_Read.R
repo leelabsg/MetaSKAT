@@ -23,11 +23,11 @@ Open_MSSD_File_2Read<-function(File.MSSD.vec, File.MInfo.vec){
 		File.MSSD.vec[i]<-normalizePath(File.MSSD.vec[i] ,mustWork =FALSE)
 		File.MInfo.vec[i]<-normalizePath(File.MInfo.vec[i] ,mustWork =FALSE)
 		
-		SKAT:::Check_File_Exists(File.MSSD.vec[i])
-		SKAT:::Check_File_Exists(File.MInfo.vec[i])
+		Check_File_Exists(File.MSSD.vec[i])
+		Check_File_Exists(File.MInfo.vec[i])
 					
 		if(!is.null(File.Weight.vec)){
-			SKAT:::Check_File_Exists(File.Weight.vec[i])
+			Check_File_Exists(File.Weight.vec[i])
 		}
 	}
 	

@@ -44,8 +44,8 @@ Open_MPermu_File_2Read<-function(File.MPermu.vec, File.MInfo.vec){
 		File.MPermu.vec[i]<-normalizePath(File.MPermu.vec[i] ,mustWork =FALSE)
 		File.MInfo.vec[i]<-normalizePath(File.MInfo.vec[i] ,mustWork =FALSE)	
 	
-		SKAT:::Check_File_Exists(File.MPermu.vec[i])
-		SKAT:::Check_File_Exists(File.MInfo.vec[i])
+		Check_File_Exists(File.MPermu.vec[i])
+		Check_File_Exists(File.MInfo.vec[i])
 	}
 	
 	# Read files

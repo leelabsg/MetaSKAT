@@ -442,11 +442,14 @@ method="davies", r.corr=0, is.separate=FALSE, Group_Idx=NULL){
 
 	for(i in 1:n.g){
 		if(combined.weight == TRUE){
-			weight1<-SKAT:::Beta.Weights(MAF.Combine,weights.beta)
+			#weight1<-SKAT:::Beta.Weights(MAF.Combine,weights.beta)
+		  weight1<-Beta.Weights(MAF.Combine,weights.beta)
 		} else {
 			j<-Map.Groups[i]
-			weight1<-SKAT:::Beta.Weights(MAF.Groups[[j]],weights.beta)
+			#weight1<-SKAT:::Beta.Weights(MAF.Groups[[j]],weights.beta)
+			weight1<-Beta.Weights(MAF.Groups[[j]],weights.beta)
 		} 
+	  
 
 		re[[i]]$Score =  re[[i]]$Score * weight1
 		re[[i]]$SMat.Summary =  t(t(re[[i]]$SMat.Summary * weight1) * weight1)

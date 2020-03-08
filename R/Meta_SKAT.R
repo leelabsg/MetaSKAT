@@ -1,58 +1,3 @@
-Check_Class<-function(obj, class_type){
-  re<-TRUE
-  if(!any(class(obj) %in% class_type)){
-    re<-FALSE
-  }
-  return(re)
-}
-
-Is_TryError<-function(obj){
-  
-  re<-Check_Class(obj, "try-error")
-  return(re)
-}
-
-Beta.Weights<-function(MAF,weights.beta, Cutoff=1, Is.MAF=TRUE){
-
-	n<-length(MAF)
-	weights<-rep(0,n)
-	Sign<-rep(1,n)
-	#print(MAF)
-	
-	IDX1<-which(MAF > 0.5)
-	if(length(IDX1) > 0){
-		Sign[IDX1]<--1
-		MAF[IDX1]<-1-MAF[IDX1]
-	}
-	 
-
-	
-	IDX_0<-union(which(MAF == 0), which(MAF > Cutoff))
-	if(length(IDX_0) == n){
-		#stop("No polymorphic SNPs")
-		weights<-rep(0,n)
-	} else if( length(IDX_0) == 0){
-		weights<-dbeta(MAF,weights.beta[1],weights.beta[2])
-	} else {
-		weights[-IDX_0]<-dbeta(MAF[-IDX_0],weights.beta[1],weights.beta[2])
-	}
-
-	weights = weights * Sign	
-	#if(!Is.MAF){
-	#	weights1<<-weights
-	#	MAF1<<-MAF
-	#} else {
-	#	weights2<<-weights
-	#	MAF2<<-MAF
-	#}
-	
-
-	#print(length(IDX_0))
-	#print(weights[-IDX_0])
-	return(weights)
-	
-}
-
 
 
 Meta_SKAT.Work<-function(re, n.g, combined.weight=TRUE, n1=NULL, weights.beta=c(1,25),
@@ -272,7 +217,7 @@ method="davies", r.corr=0, is.separate = FALSE, Group_Idx=NULL, impute.method="f
 			Is.impute.cohortwise = TRUE
 		
 		} else if(impute.estimate.maf==2){
-			Z<-SKAT:::Impute(Z,impute.method=impute.method)
+			Z<-Impute(Z,impute.method=impute.method)
 		} else if(impute.estimate.maf==3){
 			if(is.null(Group_Idx)){
 				stop("ERROR: Group_Idx should not be NULL when impute.estimate.maf==3")
@@ -288,7 +233,7 @@ method="davies", r.corr=0, is.separate = FALSE, Group_Idx=NULL, impute.method="f
 					ID<-obj$ID[[id.cohort]]
 					ID.all<-c(ID.all, ID)
 				}
-				Z[ID.all,]<-SKAT:::Impute(Z[ID.all,],impute.method=impute.method)
+				Z[ID.all,]<-Impute(Z[ID.all,],impute.method=impute.method)
 			}
 			
 
@@ -358,7 +303,7 @@ method="davies", r.corr=0, is.separate = FALSE, Group_Idx=NULL, impute.method="f
 			Is.impute.cohortwise = TRUE
 		
 		} else if(impute.estimate.maf==1){
-			Z<-SKAT:::Impute(Z,impute.method=impute.method)
+			Z<-Impute(Z,impute.method=impute.method)
 		} else {
 			stop("ERROR: impute.estimate.mat is wrong! it should be either 1 or 2")
 		}
@@ -372,7 +317,7 @@ method="davies", r.corr=0, is.separate = FALSE, Group_Idx=NULL, impute.method="f
 		if(Is.impute.cohortwise ){
 			Z1<-as.matrix(Z[ID,])
 		} else {
-			Z1<-SKAT:::Impute(as.matrix(Z[ID,]),impute.method=impute.method)
+			Z1<-Impute(as.matrix(Z[ID,]),impute.method=impute.method)
 		}
 		res<-obj$out[[i]]$res
 		res.out<-obj$out[[i]]$res.out

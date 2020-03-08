@@ -32,8 +32,8 @@ Open_BED_File<-function(File.Bed, File.Bim, N.Sample, Is.Dosage){
 	File.Bim<-normalizePath(File.Bim ,mustWork =FALSE)
 
 	
-	SKAT:::Check_File_Exists(File.Bed)
-	SKAT:::Check_File_Exists(File.Bim)
+	Check_File_Exists(File.Bed)
+	Check_File_Exists(File.Bim)
 
 	
 	# read bim file
@@ -71,7 +71,7 @@ Open_Dosage_File<-function(File.Dosage,  N.Sample){
 	err_code<-0
 	File.Dosage<-normalizePath(File.Dosage ,mustWork =FALSE)
 	
-	SKAT:::Check_File_Exists(File.Dosage)
+	Check_File_Exists(File.Dosage)
 
 	
 	# read bim file
@@ -436,7 +436,7 @@ Generate_Meta_Files_Work<-function(obj, File.Bed, File.Bim, File.SetID, File.MSS
 	Magic_Byte<-1
 	# Read MAP file and SetID file
 	File.SetID<-normalizePath(File.SetID ,mustWork =FALSE)
-	SKAT:::Check_File_Exists(File.SetID)
+	Check_File_Exists(File.SetID)
 
 	##########################################
 	# Check obj
