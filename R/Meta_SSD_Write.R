@@ -170,7 +170,7 @@ Close_BED_File<-function(Is.Dosage){
 
 	if(Is.Dosage){
 		Close_Dosage_File()
-		return
+		return(1)
 	}
 
 
