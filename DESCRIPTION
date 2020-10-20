@@ -9,4 +9,4 @@ Description: Functions for Meta-analysis Burden test, SKAT and SKAT-O by  Lee et
 License: GPL(>=2)
 SystemRequirements:	Little Endian
 Depends: R (>= 2.13.0)
-Imports: SKAT
+Imports: SKAT (>= 2.0.1)

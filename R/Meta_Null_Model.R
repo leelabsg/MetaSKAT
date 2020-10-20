@@ -27,7 +27,7 @@ Meta_Null_Model<-function(y.list, x.list, n.cohort, out_type="C", n.Resampling=0
 			formula = y ~ X
 		}
 
-		re$out[[i]]<-SKAT::SKAT_Null_Model(formula, out_type=out_type, Adjustment=FALSE, n.Resampling=n.Resampling)
+		re$out[[i]]<-SKAT_Null_Model(formula, out_type=out_type, Adjustment=FALSE, n.Resampling=n.Resampling)
 
 		if(length(re$out[[i]]$id_include) != length(y)){
 			msg<-sprintf("Missing values in cohort %d. The current version cannot handle missing values in either phenotypes or covariates!",i)
@@ -78,9 +78,9 @@ Meta_Null_Model_EmmaX<-function(y.list, x.list, n.cohort, K.list=NULL, Kin.File.
 		}
 		
 		if(!is.null(K.list)){
-			re$out[[i]]<-SKAT::SKAT_NULL_emmaX(formula, K=K.list[[i]])
+			re$out[[i]]<-SKAT_NULL_emmaX(formula, K=K.list[[i]])
 		} else if(!is.null(Kin.File.list)){
-			re$out[[i]]<-SKAT::SKAT_NULL_emmaX(formula, Kin.File=Kin.File.list[[i]])
+			re$out[[i]]<-SKAT_NULL_emmaX(formula, Kin.File=Kin.File.list[[i]])
 		} else {
 			stop("Either K.list or Kin.File.list should have non-null value!")
 		}

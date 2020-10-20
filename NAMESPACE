@@ -8,6 +8,7 @@ export(Meta_Null_Model, MetaSKAT_wZ, MetaSKAT_MSSD_OneSet, Open_MSSD_File_2Read,
 
 importFrom("stats", "dbeta", "rbinom")
 importFrom("utils", "read.delim", "read.table", "write.table")
+importFrom("SKAT", "Get_Lambda", "Get_Liu_PVal", "SKAT_Check_Method", "SKAT_Optimal_Each_Q", "SKAT_Optimal_PValue_Davies", "SKAT_Optimal_PValue_Liu", "Get_Davies_PVal", "SKAT_Null_Model","SKAT_NULL_emmaX")
 
 # variables
 #export(META_SSD_FILE_OPEN_Read.isInit,

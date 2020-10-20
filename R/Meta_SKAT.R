@@ -73,7 +73,7 @@ method="davies", r.corr=0, is.separate=FALSE, Group_Idx=NULL, MAF.cutoff=1, Is.M
 		}
 	}
 
-	re.method<-SKAT:::SKAT_Check_Method(method,r.corr)
+	re.method<-SKAT_Check_Method(method,r.corr)
 
 	if(!is.separate){
 		re.score<-Meta_SKAT.Work.OneUnit(re, n.g)

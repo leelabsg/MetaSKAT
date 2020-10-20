@@ -49,13 +49,13 @@ SKAT_META_Optimal_Get_Pvalue<-function(Q.all, Phi, r.all, method){
 		R.M<-diag(rep(1-r.corr,p.m)) + matrix(rep(r.corr,p.m*p.m),ncol=p.m)
 		L<-chol(R.M,pivot=TRUE)
 		Phi_rho<- L %*% (Phi %*% t(L))
-		lambda.all[[i]]<-SKAT:::Get_Lambda(Phi_rho)
+		lambda.all[[i]]<-Get_Lambda(Phi_rho)
 		 
 	}
 
 	# Get Mixture param 
 	param.m<-SKAT_META_Optimal_Param(Phi,r.all)
-	Each_Info<-SKAT:::SKAT_Optimal_Each_Q(param.m, Q.all, r.all, lambda.all, method=method)
+	Each_Info<-SKAT_Optimal_Each_Q(param.m, Q.all, r.all, lambda.all, method=method)
 	pmin.q<-Each_Info$pmin.q
 	pval<-rep(0,n.q)
 	
@@ -65,14 +65,14 @@ SKAT_META_Optimal_Get_Pvalue<-function(Q.all, Phi, r.all, method){
 	if(method == "davies" || method=="optimal" || method=="optimal.mod"){
 
 		for(i in 1:n.q){
-			pval[i]<-SKAT:::SKAT_Optimal_PValue_Davies(pmin.q[i,],param.m,r.all, pmin[i])
+			pval[i]<-SKAT_Optimal_PValue_Davies(pmin.q[i,],param.m,r.all, pmin[i])
 		}
 
 
 	} else if(method =="liu" || method =="liu.mod" ){
 		
 		for(i in 1:n.q){
-			pval[i]<-SKAT:::SKAT_Optimal_PValue_Liu(pmin.q[i,],param.m,r.all, pmin[i])
+			pval[i]<-SKAT_Optimal_PValue_Liu(pmin.q[i,],param.m,r.all, pmin[i])
 		}
 
 	} else {
@@ -131,7 +131,7 @@ SKAT_META_Optimal_Param<-function(Phi,r.all){
 
 	# W3.2 Term : mixture chisq
 	W3.2.t<-ZZ - ZMZ
-	lambda<-SKAT:::Get_Lambda(W3.2.t)
+	lambda<-Get_Lambda(W3.2.t)
 	
 	# W3.3 Term : variance of remaining ...
 	W3.3.item<-sum(ZMZ *(ZZ-ZMZ)) * 4
@@ -275,7 +275,7 @@ Met_SKAT_Get_Pvalue<-function(Score, Phi, r.corr, method, Score.Resampling=NULL)
 		}
 
 		a<- as.matrix(sum(Phi))
-		re<-SKAT:::Get_Liu_PVal(Q, a, Q.res)
+		re<-Get_Liu_PVal(Q, a, Q.res)
 		return(re)
 	} else {
 
@@ -291,7 +291,7 @@ Met_SKAT_Get_Pvalue<-function(Score, Phi, r.corr, method, Score.Resampling=NULL)
 		
 	}
 
-	re<-SKAT:::Get_Davies_PVal(Q, Phi, Q.res)
+	re<-Get_Davies_PVal(Q, Phi, Q.res)
 	return(re)
 
 }
@@ -459,7 +459,7 @@ method="davies", r.corr=0, is.separate=FALSE, Group_Idx=NULL){
 		}
 	}
 
-	re.method<-SKAT:::SKAT_Check_Method(method,r.corr)
+	re.method<-SKAT_Check_Method(method,r.corr)
 
 	if(!is.separate){
 		re.score<-Meta_SKAT.Work.OneUnit(re, n.g)
