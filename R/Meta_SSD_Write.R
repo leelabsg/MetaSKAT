@@ -37,7 +37,7 @@ Open_BED_File<-function(File.Bed, File.Bim, N.Sample, Is.Dosage){
 
 	
 	# read bim file
-	cat("Read Bim file\n")
+	message("Read Bim file\n")
 	BimInfo<-try(read.table(File.Bim, header=FALSE, stringsAsFactors=FALSE), silent=TRUE)
 	if(Is_TryError(BimInfo)){
 		stop("Error in Bim file!") 
@@ -46,7 +46,7 @@ Open_BED_File<-function(File.Bed, File.Bim, N.Sample, Is.Dosage){
 	colnames(BimInfo)<-c("Chr","SnpID", "cM","base","a1","a2")
 	BimInfo$idx<-1:nMarker
 	
-	cat("Bim file has", nMarker , "markers\n")
+	message("Bim file has", nMarker , "markers\n")
 	
 	
 	# open bed file
@@ -75,7 +75,7 @@ Open_Dosage_File<-function(File.Dosage,  N.Sample){
 
 	
 	# read bim file
-	cat("Read Dosage file\n")
+	message("Read Dosage file\n")
 	
 	nMarker = 0
 	# open dosage file
@@ -156,11 +156,11 @@ Close_Dosage_File<-function(){
 		Msg<-sprintf("Close the opened Dosage file: %s\n"
 		,get("META_Dosage_FILE_OPEN.FileName", envir=MetaSSD.env));
 		
-		cat(Msg)
+		message(Msg)
 		assign("META_Dosage_FILE_OPEN.isOpen", 0, envir=MetaSSD.env);
 	} else{
 		Msg<-sprintf("No opened SSD file!\n");
-		cat(Msg)		
+		message(Msg)		
 	}
 
 }
@@ -180,11 +180,11 @@ Close_BED_File<-function(Is.Dosage){
 		Msg<-sprintf("Close the opened Bed file: %s\n"
 		,get("META_BED_FILE_OPEN.FileName", envir=MetaSSD.env));
 		
-		cat(Msg)
+		message(Msg)
 		assign("META_BED_FILE_OPEN.isOpen", 0, envir=MetaSSD.env);
 	} else{
 		Msg<-sprintf("No opened SSD file!\n");
-		cat(Msg)		
+		message(Msg)		
 	}
 
 }
@@ -264,11 +264,11 @@ Close_Write_MSSD_File<-function(){
 		Msg<-sprintf("Close the opened MSSD file: %s\n"
 		,get("META_MSSD_FILE_OPEN_Write.FileName", envir=MetaSSD.env));
 		
-		cat(Msg)
+		message(Msg)
 		assign("META_MSSD_FILE_OPEN_Write.isOpen", 0, envir=MetaSSD.env);
 	} else{
 		Msg<-sprintf("No opened MSSD files!\n");
-		cat(Msg)		
+		message(Msg)		
 	}
 
 }
@@ -324,8 +324,8 @@ Check_Saved<-function(nsets, StartPos){
 	pos1<-temp[[1]]
 	if( sum((pos1-StartPos)^2) > 10^(-10)){
 		msg<-sprintf("Error: MSSD file save- startpos \n")
-		cat("[POS1]", pos1, "\n")
-		cat("[POS2]", StartPos, "\n")
+		message("[POS1]", pos1, "\n")
+		message("[POS2]", StartPos, "\n")
 		stop(msg)
 	}
 	
@@ -336,7 +336,7 @@ Check_Saved<-function(nsets, StartPos){
 	err_code<-temp[[1]]
 	Print_Error_CODE(err_code)
 		
-	cat("Save was done successfully!\n")
+	message("Save was done successfully!\n")
 }
 
 
@@ -456,7 +456,7 @@ Generate_Meta_Files_Work<-function(obj, File.Bed, File.Bim, File.SetID, File.MSS
 
 
 	# read setid
-	cat("Read SetID file\n")
+	message("Read SetID file\n")
 	SetInfo<-try(read.table(File.SetID, header=FALSE, stringsAsFactors=FALSE), silent=TRUE)
 	if(Is_TryError(SetInfo)){
 		stop("Error in SetID file!") 
@@ -466,7 +466,7 @@ Generate_Meta_Files_Work<-function(obj, File.Bed, File.Bim, File.SetID, File.MSS
 	nSets<-length(SetIDs)
 	nMarker.Sets<-dim(SetInfo)[1]
 
-	cat("SetID file has", nSets, "sets\n")
+	message("SetID file has", nSets, "sets\n")
 
 	# open bim
 	BimInfo<-Open_BED_File(File.Bed, File.Bim, N.Sample,Is.Dosage=Is.Dosage)
@@ -479,7 +479,7 @@ Generate_Meta_Files_Work<-function(obj, File.Bed, File.Bim, File.SetID, File.MSS
 	###########################################
 	# 	Merge two files 
 
-	cat("Merge datasets and get set info\n")
+	message("Merge datasets and get set info\n")
 
 	SetInfo$SetID.Num1<-as.numeric(as.factor(SetInfo$SetID))
 	SetInfo$IDX<-1:length(SetInfo$SetID)

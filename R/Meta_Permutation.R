@@ -3,7 +3,6 @@ ReadPermu_Header<-function(File.MPermu){
 
 	con = file(File.MPermu, "rb")
 	header<-readBin(con, integer(), n = 10, size = 8)
-	#cat(header, "\n")
 	
 	# n.permu, n.all, n, nSets, nSNPs, nSNPs.unique
 	re = list(con=con, n.permu=header[2], n.all=header[3], n=header[4], nSets=header[5], nSNPs.unique=header[6])
@@ -20,7 +19,6 @@ ReadPermu_Header<-function(File.MPermu){
 GetPermu_Score<-function(con, nSNP, nPermu,  StartPosPermu){
 
 
-	#cat("Start:", StartPosPermu, "\n")
 	#StartPosPermu = 8 * 10
 	seek(con, where = StartPosPermu, origin = "start")
 	out = readBin(con, double(), n = nSNP * (nPermu +1) , size = 8)
@@ -37,7 +35,7 @@ Open_MPermu_File_2Read<-function(File.MPermu.vec, File.MInfo.vec){
 		stop("Different numbers of Meta Info and Permu files!")
 	}
 	
-	cat("Number of cohorts = ", n.cohort, "\n")
+	message("Number of cohorts = ", n.cohort, "\n")
 	
 	# Check the existence of files 
 	for(i in 1:n.cohort){
@@ -106,10 +104,7 @@ GetPermu_obj<-function(Permu.Info, SetID){
 			Permu.list[[i]] = out.m[,-1]
 			Score.list[[i]] = out.m[,1]
 			
-			# check score.list
-			#cat("Check: ", sum((Score.list[[i]] - Info.list[[i]]$Score)^2), "\n")
-			#cat(Score.list[[i]], "\n")
-			#cat(Info.list[[i]]$Score, "\n")
+
 		}
 	}
 	#Info.list1<<-Info.list

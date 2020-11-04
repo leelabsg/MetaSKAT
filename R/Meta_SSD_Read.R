@@ -16,7 +16,7 @@ Open_MSSD_File_2Read<-function(File.MSSD.vec, File.MInfo.vec){
 		stop("Different numbers of MSSD and Meta Info files!")
 	}
 	
-	cat("Number of cohorts = ", n.cohort, "\n")
+	message("Number of cohorts = ", n.cohort, "\n")
 	
 	# Check the existence of files 
 	for(i in 1:n.cohort){
@@ -72,11 +72,11 @@ Close_MSSD_Files<-function(){
 	if(get("META_MSSD_FILE_OPEN_Read.isInit", envir=MetaSSDR.env) == 1){
 		temp<-.C("META_MSSD_Read_Close")
 		Msg<-sprintf("Close the opened MSSD files \n")
-		cat(Msg)
+		message(Msg)
 		assign("META_MSSD_FILE_OPEN_Read.isInit", 0, envir=MetaSSDR.env);
 	} else{
 		Msg<-sprintf("No opened MSSD file!\n");
-		cat(Msg)		
+		message(Msg)		
 	}
 
 }
@@ -256,7 +256,7 @@ Read_Info_File_Header<-function(File.MetaInfo){
 	msg<-sprintf("%d samples, %d sets, %d SNPs and %d unique SNPs\n", 
 	N.Sample, N.Sets, N.SNPs, N.SNPs.unique)
 
-	cat(msg)
+	message(msg)
 	return(info.header)
 
 }

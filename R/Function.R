@@ -68,7 +68,6 @@ Beta.Weights<-function(MAF,weights.beta, Cutoff=1, Is.MAF=TRUE){
 	n<-length(MAF)
 	weights<-rep(0,n)
 	Sign<-rep(1,n)
-	#print(MAF)
 	
 	IDX1<-which(MAF > 0.5)
 	if(length(IDX1) > 0){
@@ -98,8 +97,6 @@ Beta.Weights<-function(MAF,weights.beta, Cutoff=1, Is.MAF=TRUE){
 	#}
 	
 
-	#print(length(IDX_0))
-	#print(weights[-IDX_0])
 	return(weights)
 	
 }
