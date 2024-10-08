@@ -1,14 +1,14 @@
 Package: MetaSKAT
-Type: Package 
+Type: Package
 Title: Meta Analysis for SNP-Set (Sequence) Kernel Association Test
-Version: 0.81
-Date: 2020-11-04
+Version: 0.90
+Date: 2024-10-08
 Authors@R: c(person("Seunggeun (Shawn)", "Lee", role = c("aut", "cre"),
                      email = "lee7801@snu.ac.kr"))
 Author: Seunggeun (Shawn) Lee [aut, cre]
-Maintainer: Seunggeun (Shawn) Lee <lee7801@snu.ac.kr>  
+Maintainer: Seunggeun (Shawn) Lee <lee7801@snu.ac.kr>
 Description: Functions for Meta-analysis Burden Test, Sequence Kernel Association Test (SKAT) and Optimal SKAT (SKAT-O) by  Lee et al. (2013) <doi:10.1016/j.ajhg.2013.05.010>. These methods use summary-level score statistics to carry out gene-based meta-analysis for rare variants.
-License: GPL(>=2)
-SystemRequirements:	Little Endian
+License: GPL (>= 2)
+SystemRequirements: Little Endian
 Depends: R (>= 2.13.0)
 Imports: SKAT (>= 2.0.1)

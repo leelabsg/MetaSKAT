@@ -12,7 +12,7 @@ void * F_alloc(int n, int size){
     ptr = (void *) calloc( n, size);
     //Rprintf("Memory alloc %d, %d, [%d]\n", n, size, ptr);
     if(ptr == NULL){
-        error("Memory allocation error size:[%d]", n);
+        Rf_error("Memory allocation error size:[%d]", n);
     }
 #endif
 

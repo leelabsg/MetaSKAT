@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <R.h> 
 #include "RFunc.h"
 #include "Read_Dosage.h"
 #include "error_messages.h"
@@ -101,13 +102,13 @@ int DosageFile::ReadLine(const std::string& str, const std::string& delimiters, 
         //printf("size[%d][%d][%d][%d][%d][%d][%d]\n", i, j,size,(int) std::string::npos, (int)pos, (int)lastPos, size_str);
         if(j==0){
             if(size > SNP_ID_SIZE){
-                error("Length of SNPID > 50 [%s]\n", str.substr(lastPos, size).c_str());
+                Rf_error("Length of SNPID > 50 [%s]\n", str.substr(lastPos, size).c_str());
             }
             strncpy ( &(m_SNPID[i  * (SNP_ID_SIZE+1)]) , &(str.c_str()[lastPos]), size);
         } else if(j==1 || j==2){
             
             if(size > 1){
-                    error("Second column of the Dosage file should be a char [%s]\n", str.substr(lastPos, pos - lastPos).c_str());
+                    Rf_error("Second column of the Dosage file should be a char [%s]\n", str.substr(lastPos, pos - lastPos).c_str());
             }
             
             if(j==1){
@@ -119,7 +120,7 @@ int DosageFile::ReadLine(const std::string& str, const std::string& delimiters, 
             
             if(size >20){
                 
-                error("Dosage value size > 20 [%d]\n", size);
+                Rf_error("Dosage value size > 20 [%d]\n", size);
             }
             memset(buff, 0, 21* sizeof(char));
             strncpy ( buff, &(str.c_str()[lastPos]), size );
@@ -141,7 +142,7 @@ int DosageFile::ReadLine(const std::string& str, const std::string& delimiters, 
         size = (int)(size_str - lastPos);
         if(size >20){
             
-            error("Dosage value size > 20 [%d]\n", size);
+            Rf_error("Dosage value size > 20 [%d]\n", size);
         }
         memset(buff, 0, 21* sizeof(char));
         strncpy ( buff, &(str.c_str()[lastPos]), size );
@@ -153,13 +154,13 @@ int DosageFile::ReadLine(const std::string& str, const std::string& delimiters, 
     
     if(j != m_nSample + 3){
         
-        error("The number of elements in line[%d] is not [%d] (%d)\n", i+1,m_nSample+3, j  ); 
+        Rf_error("The number of elements in line[%d] is not [%d] (%d)\n", i+1,m_nSample+3, j  ); 
     }
     m_POS[i] = m_tempfile.tellp();
     m_tempfile.write ( (char *) m_pDosage, sizeof(float) * m_nSample );
     if(!m_tempfile){
         
-        error("Dosage temp file write!\n");
+        Rf_error("Dosage temp file write!\n");
     }
     
     return NO_ERRORS;
